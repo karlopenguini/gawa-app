@@ -8,16 +8,20 @@ environment:
 
 dependencies:
   animated_text_kit: ^4.2.2
+  cloud_firestore: ^4.14.0
   confetti: ^0.7.0
   firebase_auth: ^4.16.0
   firebase_core: ^2.24.2
+  firebase_database: ^10.4.0
   flutter:
     sdk: flutter
   flutter_form_builder: ^9.1.1
+  flutter_hooks: ^0.20.4
   flutter_native_splash: ^2.3.5
   flutter_riverpod: ^2.4.5
   flutter_svg: ^2.0.9
   form_builder_validators: ^9.1.0
+  freezed: ^2.4.6
   google_fonts: ^6.1.0
   google_maps_flutter: ^2.5.3
   photo_view: ^0.14.0

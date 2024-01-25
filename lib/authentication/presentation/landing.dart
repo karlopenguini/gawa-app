@@ -1,4 +1,4 @@
-import 'package:app/registration/presentation/pages/registration.dart';
+import 'package:app/authentication/presentation/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,23 +13,22 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 13),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             children: [
               const Spacer(),
               const Center(
                   child: Image(image: AssetImage("assets/big_logo.png"))),
               const SizedBox(height: 48),
-              Text(phoneNumber,
-                  style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2)),
-              const Text(
-                "Karlo Miguel Palisoc",
-                style: const TextStyle(fontSize: 16, letterSpacing: 1.4),
+              FormBuilderTextField(
+                name: 'phone_number',
+                cursorColor: Colors.blue,
+                decoration: const InputDecoration(
+                    labelText: 'Phone Number',
+                    labelStyle: TextStyle(color: Colors.blue)),
+                obscureText: true,
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 16),
               FormBuilderTextField(
                 name: 'password',
                 cursorColor: Colors.blue,

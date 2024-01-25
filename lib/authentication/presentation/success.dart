@@ -1,3 +1,5 @@
+import 'package:app/authentication/presentation/landing.dart';
+import 'package:app/common/main_layout.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -61,7 +63,7 @@ class _SuccessPageState extends State<SuccessPage> {
               ),
               const SizedBox(height: 24),
               const Text(
-                "Your account is currently under review. Once verified, you'll be a certified #KaGawa! \n\n To view the status of your submission, please head over to your profile and check status.\n\n Verification is typically done within one day!",
+                "Your account is currently under review. Once verified, you'll be a certified #KaGawa! \n\n To view the status of your submission, please head over to your profile and check status.\n\n Verification is typically done within one day!\n\n Thank you for participating for our study :)",
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -85,18 +87,20 @@ class _SuccessPageState extends State<SuccessPage> {
                     ),
                   ),
                   const Spacer(),
-                  const Row(children: [
+                  const Column(children: [
                     Text("Ipa",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w900)),
+                            fontSize: 42,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -1)),
                     Image(image: AssetImage("assets/gawa-white.png")),
                     Text("na natin to!",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 36,
-                            fontWeight: FontWeight.w900)),
+                            fontSize: 42,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: -1)),
                   ]),
                   const Spacer(),
                   Align(
@@ -140,7 +144,14 @@ class _SuccessPageState extends State<SuccessPage> {
                     width: 24,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MainLayout(),
+                        ),
+                      );
+                    },
                     style: ButtonStyle(
                         padding: const MaterialStatePropertyAll(
                             EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
