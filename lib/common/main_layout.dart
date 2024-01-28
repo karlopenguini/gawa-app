@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 
 import 'package:app/analytics/presentation/pages/analytics_page.dart';
-import 'package:app/authentication/presentation/authenticated_widget.dart';
+import 'package:app/authentication/presentation/pages/authenticated_widget.dart';
 import 'package:app/gawain/presentation/pages/gawain_layout.dart';
 import 'package:app/home/presentation/pages/home_page.dart';
 import 'package:app/search/presentation/pages/search_page.dart';

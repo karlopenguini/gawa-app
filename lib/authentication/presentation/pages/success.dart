@@ -1,4 +1,4 @@
-import 'package:app/authentication/presentation/landing.dart';
+import 'package:app/authentication/presentation/pages/landing.dart';
 import 'package:app/common/main_layout.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';

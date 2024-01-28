@@ -1,4 +1,4 @@
-import 'package:app/authentication/presentation/authenticated_widget.dart';
+import 'package:app/authentication/presentation/pages/authenticated_widget.dart';
 import 'package:app/common/main_layout.dart';
 import 'package:app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
