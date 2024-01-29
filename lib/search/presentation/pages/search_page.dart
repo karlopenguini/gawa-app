@@ -49,7 +49,7 @@ class SearchPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const KagawaProfilePage(),
+                  builder: (context) => const KagawaProfilePage(id: 0),
                 ),
               );
             },
