@@ -7,6 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
 
     // something to fetch the first 5 recent workers or something.
     var favorites = <KagawaCard>[
@@ -19,105 +20,196 @@ class HomePage extends StatelessWidget {
         length: 4,
         child: Scaffold(
           backgroundColor: Colors.white,
-          body: Stack(children: [
-            Container(
-              height: 154,
-              width: double.infinity,
-              color: const Color.fromARGB(255, 0, 135, 249),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 13.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(Icons.chat_bubble_outline,
-                            color: Colors.transparent),
-                        Image(
-                          image: AssetImage('assets/gawa_text_white.png'),
-                          height: 32,
-                        ),
-                        Icon(Icons.chat_bubble_rounded,
-                            color: Colors.white, size: 18),
-                      ],
+          body: Column(
+            children: [
+              const SafeArea(child: HomeBar()),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 13.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "My #Kagawa",
+                      style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          letterSpacing: -1.5),
                     ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    SingleChildScrollView(
+                      padding: EdgeInsets.only(bottom: 10),
+                      scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: [
-                          IconButton(
-                            icon: const Icon(
-                              Icons.location_on,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {},
-                          ),
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text("Home",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      letterSpacing: 1.2)),
-                              Text("Blk 3, Lot 21, Solen Residences",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      letterSpacing: 0.8))
-                            ],
-                          )
-                        ],
-                      )),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(13, 0, 13, 32),
-                    child: SearchButton(),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 13.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "My #Kagawa",
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 0, 135, 249),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                              letterSpacing: -1.5),
-                        ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                              children: [
-                                for (var fav in favorites)
-                                  KagawaCard(
-                                    id: fav.id,
-                                    role: fav.name,
-                                    name: fav.role,
-                                    image: fav.image,
-                                  ),
-                              ]
-                          ),
-                        ),
-                      ],
+                          children: [
+                            for (var fav in favorites)
+                              KagawaCard(
+                                id: fav.id,
+                                role: fav.name,
+                                name: fav.role,
+                                image: fav.image,
+                              ),
+                          ]
+                      ),
                     ),
-                  )
+
+                    Text(
+                      "My Patrons",
+                      style: TextStyle(
+                          color: theme.colorScheme.onBackground,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          letterSpacing: -1.5),
+                    ),
+
+                    const PatronCard(),
+
+                    const Row(
+                      children: [
+                        Expanded(child: PatronCard()),
+                        Expanded(child: PatronCard()),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        )
+    );
+  }
+}
+
+class PatronCard extends StatelessWidget {
+  const PatronCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: const Image(
+                image: NetworkImage('https://th.bing.com/th?id=OIP.uNuoQWv-ihzZIKjWvhCYfAHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2'),
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10,10,10,30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text('Carwash',
+                  style: TextStyle(
+                      color: theme.colorScheme.onInverseSurface,
+                      fontWeight: FontWeight.normal,
+                      letterSpacing: -1.5),
+                ),
+                const SizedBox(height: 14,),
+                Text('Juan Dela Cruz Carwash',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.end,
+                  style: TextStyle(
+                      color: theme.colorScheme.onInverseSurface,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 38,
+                      letterSpacing: -1.5),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeBar extends StatelessWidget {
+  const HomeBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Stack(children: [
+      Container(
+        height: 134,
+        width: double.infinity,
+        color: theme.colorScheme.primary,
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.chat_bubble_outline,
+                      color: Colors.transparent),
+                  Image(
+                    image: AssetImage('assets/gawa_text_white.png'),
+                    height: 32,
+                  ),
+                  Icon(Icons.chat_bubble_rounded,
+                      color: Colors.white, size: 18),
                 ],
               ),
             ),
-          ]),
-        ));
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {},
+                    ),
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Home",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2)),
+                        Text("Blk 3, Lot 21, Solen Residences",
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                letterSpacing: 0.8))
+                      ],
+                    )
+                  ],
+                )),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(13, 0, 13, 32),
+              child: SearchButton(),
+            ),
+          ],
+        ),
+      ),
+    ]);
   }
 }

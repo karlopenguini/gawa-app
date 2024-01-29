@@ -24,7 +24,7 @@ class KagawaCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const KagawaProfilePage(id: 0),
+            builder: (context) => KagawaProfilePage(id: id),
           ),
         );
       },
