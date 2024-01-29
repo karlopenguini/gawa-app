@@ -14,7 +14,7 @@ class KagawaCard extends StatelessWidget {
     required this.id,
     required this.role,
     required this.name,
-    this.image = 'https://static.vecteezy.com/system/resources/previews/021/548/095/non_2x/default-profile-picture-avatar-user-avatar-icon-person-icon-head-icon-profile-picture-icons-default-anonymous-user-male-and-female-businessman-photo-placeholder-social-network-avatar-portrait-free-vector.jpg',
+    this.image = 'https://th.bing.com/th/id/OIP.ENu9hrlfzOB84klpy9Y20QHaHa?w=198&h=197&c=7&r=0&o=5&pid=1.7',
   });
 
   @override
