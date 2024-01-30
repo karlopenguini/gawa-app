@@ -38,6 +38,7 @@ class KagawaCard extends StatelessWidget {
               CircleAvatar(
                 radius: 40,
                 backgroundImage: NetworkImage(image),
+                backgroundColor: Colors.black54,
               ),
               const SizedBox(height: 10),
               Text(role,
