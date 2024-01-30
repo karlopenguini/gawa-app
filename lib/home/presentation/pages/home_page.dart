@@ -1,6 +1,6 @@
 import 'package:app/home/presentation/widgets/search_button.dart';
 import 'package:flutter/material.dart';
-import 'package:app/common/components/cards/kagawa_card.dart';
+import 'package:app/home/presentation/widgets/kagawa_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
