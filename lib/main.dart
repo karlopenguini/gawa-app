@@ -11,11 +11,13 @@ void main() async {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(ProviderScope(
       child: MaterialApp(
           theme: ThemeData(
             useMaterial3: false,
             textTheme: GoogleFonts.lexendTextTheme(),
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffff0000)), // 0xff0087f9 hex for Gawa blue
           ),
           home: const AuthenticatedWidget(
             child: SafeArea(child: MainLayout()),

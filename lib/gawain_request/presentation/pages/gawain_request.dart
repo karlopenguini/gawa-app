@@ -16,9 +16,10 @@ class _GawainRequestPageState extends State<GawainRequestPage> {
   final _budgetKey = GlobalKey<FormBuilderFieldState>();
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: Colors.blue,
+        foregroundColor: theme.colorScheme.primary,
         shadowColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
@@ -134,7 +135,7 @@ class _GawainRequestPageState extends State<GawainRequestPage> {
               ),
               const SizedBox(height: 16),
               MaterialButton(
-                color: Colors.blue,
+                color: theme.colorScheme.primary,
                 minWidth: double.infinity,
                 padding: EdgeInsets.symmetric(vertical: 14),
                 onPressed: () {
