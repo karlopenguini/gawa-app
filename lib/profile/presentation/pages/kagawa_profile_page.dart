@@ -6,7 +6,13 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter/rendering.dart';
 
 class KagawaProfilePage extends StatefulWidget {
-  const KagawaProfilePage({super.key});
+
+  final int id;
+
+  const KagawaProfilePage({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<KagawaProfilePage> createState() => _KagawaProfilePageState();

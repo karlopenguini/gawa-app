@@ -4,12 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LandingPage extends ConsumerWidget {
   LandingPage({super.key});
 
   final _phoneKey = GlobalKey<FormBuilderFieldState>();
   final _passKey = GlobalKey<FormBuilderFieldState>();
+
+  final Widget bigLogo = SvgPicture.asset(
+      'assets/Gawa_Logo_Small.svg',
+      semanticsLabel: 'Gawa Logo',
+      colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
+      fit: BoxFit.contain
+  );
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,8 +54,7 @@ class LandingPage extends ConsumerWidget {
           child: Column(
             children: [
               const Spacer(),
-              const Center(
-                  child: Image(image: AssetImage("assets/big_logo.png"))),
+              SizedBox(height: 300, child: Center(child: bigLogo)),
               const SizedBox(height: 48),
               FormBuilderTextField(
                 key: _phoneKey,
