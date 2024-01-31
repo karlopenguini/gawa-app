@@ -5,9 +5,10 @@ class Gawain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
-          foregroundColor: Colors.blue,
+          foregroundColor: theme.colorScheme.primary,
           shadowColor: Colors.transparent,
           leading: IconButton(
             onPressed: () {
@@ -231,10 +232,10 @@ class Gawain extends StatelessWidget {
                         style: ButtonStyle(
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  const RoundedRectangleBorder(
-                                      side: BorderSide(color: Colors.blue))),
+                                  RoundedRectangleBorder(
+                                      side: BorderSide(color: theme.colorScheme.primary))),
                           backgroundColor:
-                              const MaterialStatePropertyAll(Colors.blue),
+                              MaterialStatePropertyAll(theme.colorScheme.primary),
                           foregroundColor:
                               const MaterialStatePropertyAll(Colors.white),
                           elevation: const MaterialStatePropertyAll(0),
