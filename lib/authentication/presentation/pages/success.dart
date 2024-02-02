@@ -124,33 +124,8 @@ class _SuccessPageState extends State<SuccessPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        padding: const MaterialStatePropertyAll(
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
-                        backgroundColor:
-                            const MaterialStatePropertyAll(Colors.white),
-                        foregroundColor:
-                            const MaterialStatePropertyAll(Colors.blue),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(999.0),
-                        ))),
-                    child: const Text("View Status",
-                        style: TextStyle(fontSize: 16)),
-                  ),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MainLayout(),
-                        ),
-                      );
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                     },
                     style: ButtonStyle(
                         padding: const MaterialStatePropertyAll(
@@ -165,7 +140,7 @@ class _SuccessPageState extends State<SuccessPage> {
                           borderRadius: BorderRadius.circular(999.0),
                         ))),
                     child: const Text(
-                      "Back Home",
+                      "Mag Pagawa!",
                       style: TextStyle(fontSize: 16),
                     ),
                   ),

@@ -12,12 +12,10 @@ class LandingPage extends ConsumerWidget {
   final _phoneKey = GlobalKey<FormBuilderFieldState>();
   final _passKey = GlobalKey<FormBuilderFieldState>();
 
-  final Widget bigLogo = SvgPicture.asset(
-      'assets/Gawa_Logo_Small.svg',
+  final Widget bigLogo = SvgPicture.asset('assets/Gawa_Logo_Small.svg',
       semanticsLabel: 'Gawa Logo',
       colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
-      fit: BoxFit.contain
-  );
+      fit: BoxFit.contain);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

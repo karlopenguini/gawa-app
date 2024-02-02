@@ -2,9 +2,8 @@ import 'package:app/gawain_request/presentation/pages/gawain_request.dart';
 import 'package:flutter/material.dart';
 
 class KagawaCallingCard extends StatelessWidget {
-  const KagawaCallingCard({
-    super.key,
-  });
+  final int id;
+  const KagawaCallingCard({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -175,7 +174,9 @@ class KagawaCallingCard extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const GawainRequestPage(),
+                              builder: (context) => GawainRequestPage(
+                                id: id,
+                              ),
                             ),
                           );
                         },
