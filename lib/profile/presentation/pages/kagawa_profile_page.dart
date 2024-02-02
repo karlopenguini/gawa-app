@@ -39,6 +39,8 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return Scaffold(
         appBar: AppBar(
           bottom: PreferredSize(
@@ -60,12 +62,12 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       horizontal: 20, vertical: 0)),
                               backgroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 0
-                                      ? Colors.blue
+                                      ? theme.colorScheme.primary
                                       : Colors.transparent),
                               foregroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 0
                                       ? Colors.white
-                                      : Colors.blue),
+                                      : theme.colorScheme.primary),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -96,12 +98,12 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       horizontal: 20, vertical: 0)),
                               backgroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 1
-                                      ? Colors.blue
+                                      ? theme.colorScheme.primary
                                       : Colors.transparent),
                               foregroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 1
                                       ? Colors.white
-                                      : Colors.blue),
+                                      : theme.colorScheme.primary),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -132,12 +134,12 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       horizontal: 20, vertical: 0)),
                               backgroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 2
-                                      ? Colors.blue
+                                      ? theme.colorScheme.primary
                                       : Colors.transparent),
                               foregroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 2
                                       ? Colors.white
-                                      : Colors.blue),
+                                      : theme.colorScheme.primary),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -168,12 +170,12 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       horizontal: 20, vertical: 0)),
                               backgroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 3
-                                      ? Colors.blue
+                                      ? theme.colorScheme.primary
                                       : Colors.transparent),
                               foregroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 3
                                       ? Colors.white
-                                      : Colors.blue),
+                                      : theme.colorScheme.primary),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -204,12 +206,12 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       horizontal: 20, vertical: 0)),
                               backgroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 4
-                                      ? Colors.blue
+                                      ? theme.colorScheme.primary
                                       : Colors.transparent),
                               foregroundColor: MaterialStateProperty.all(
                                   _currentPageIndex == 4
                                       ? Colors.white
-                                      : Colors.blue),
+                                      : theme.colorScheme.primary),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -280,7 +282,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
               },
             ),
           ],
-          foregroundColor: Colors.blue,
+          foregroundColor: theme.colorScheme.primary,
         ),
         body: PageView(
           controller: _myPage,
@@ -468,10 +470,10 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                     dateFormat: 'd',
                     dayFormat: 'EEE',
                     timeIntervalHeight: 64,
-                    allDayPanelColor: Colors.lightBlue,
+                    allDayPanelColor: theme.colorScheme.secondary,
                     timeRulerSize: 64),
                 cellBorderColor: Colors.black38,
-                todayHighlightColor: Colors.blue,
+                todayHighlightColor: theme.colorScheme.primary,
               ),
             ),
             SingleChildScrollView(
@@ -770,7 +772,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                 255, 226, 242, 255)),
                                         foregroundColor:
                                             MaterialStateProperty.all(
-                                                Colors.blue),
+                                                theme.colorScheme.primary),
                                         padding: MaterialStateProperty.all(
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
@@ -809,7 +811,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                 255, 226, 242, 255)),
                                         foregroundColor:
                                             MaterialStateProperty.all(
-                                                Colors.blue),
+                                                theme.colorScheme.primary),
                                         padding: MaterialStateProperty.all(
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
@@ -880,7 +882,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 24, vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: Colors.blue,
+                                    color: theme.colorScheme.primary,
                                     borderRadius: BorderRadius.circular(100),
                                   ),
                                   child: Text("Today",
@@ -1100,7 +1102,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                 255, 226, 242, 255)),
                                         foregroundColor:
                                             MaterialStateProperty.all(
-                                                Colors.blue),
+                                                theme.colorScheme.primary),
                                         padding: MaterialStateProperty.all(
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
@@ -1139,7 +1141,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                 255, 226, 242, 255)),
                                         foregroundColor:
                                             MaterialStateProperty.all(
-                                                Colors.blue),
+                                                theme.colorScheme.primary),
                                         padding: MaterialStateProperty.all(
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
@@ -1344,7 +1346,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                       255, 226, 242, 255)),
                                           foregroundColor:
                                               MaterialStateProperty.all(
-                                                  Colors.blue),
+                                                  theme.colorScheme.primary),
                                           padding: MaterialStateProperty.all(
                                               const EdgeInsets.symmetric(
                                                   vertical: 12)),
@@ -1384,7 +1386,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                                       255, 226, 242, 255)),
                                           foregroundColor:
                                               MaterialStateProperty.all(
-                                                  Colors.blue),
+                                                  theme.colorScheme.primary),
                                           padding: MaterialStateProperty.all(
                                               const EdgeInsets.symmetric(
                                                   vertical: 12)),

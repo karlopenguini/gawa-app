@@ -14,6 +14,7 @@ class _GawainPageState extends State<GawainPage> {
   bool _isUserDragging = false;
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.transparent,
@@ -22,7 +23,7 @@ class _GawainPageState extends State<GawainPage> {
             image: AssetImage('assets/gawa_text_white.png'),
             height: 32,
           ),
-          backgroundColor: Colors.blue,
+          backgroundColor: theme.colorScheme.primary,
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(40),
               child: Padding(
@@ -43,7 +44,7 @@ class _GawainPageState extends State<GawainPage> {
                                   : Colors.transparent),
                           foregroundColor: MaterialStateProperty.all(
                               _currentPageIndex == 0
-                                  ? Colors.blue
+                                  ? theme.colorScheme.primary
                                   : Colors.white),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -80,7 +81,7 @@ class _GawainPageState extends State<GawainPage> {
                                   : Colors.transparent),
                           foregroundColor: MaterialStateProperty.all(
                               _currentPageIndex == 1
-                                  ? Colors.blue
+                                  ? theme.colorScheme.primary
                                   : Colors.white),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -117,7 +118,7 @@ class _GawainPageState extends State<GawainPage> {
                                   : Colors.transparent),
                           foregroundColor: MaterialStateProperty.all(
                               _currentPageIndex == 2
-                                  ? Colors.blue
+                                  ? theme.colorScheme.primary
                                   : Colors.white),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -179,7 +180,7 @@ class _GawainPageState extends State<GawainPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 2),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: theme.colorScheme.primary,
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: const Text("Today (3)",

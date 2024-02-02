@@ -19,6 +19,7 @@ class _GawainRequestPageState extends State<GawainRequestPage> {
   final _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: buildAppBar(),

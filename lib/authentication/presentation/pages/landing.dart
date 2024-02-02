@@ -12,13 +12,15 @@ class LandingPage extends ConsumerWidget {
   final _phoneKey = GlobalKey<FormBuilderFieldState>();
   final _passKey = GlobalKey<FormBuilderFieldState>();
 
-  final Widget bigLogo = SvgPicture.asset('assets/Gawa_Logo_Small.svg',
-      semanticsLabel: 'Gawa Logo',
-      colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
-      fit: BoxFit.contain);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final Widget bigLogo = SvgPicture.asset('assets/Gawa_Logo_Small.svg',
+        semanticsLabel: 'Gawa Logo',
+        colorFilter:
+            ColorFilter.mode(theme.colorScheme.primary, BlendMode.srcIn),
+        fit: BoxFit.contain);
+
     Future<String?> showOtpInputDialog() async {
       TextEditingController otpController = TextEditingController();
 
@@ -57,20 +59,20 @@ class LandingPage extends ConsumerWidget {
               FormBuilderTextField(
                 key: _phoneKey,
                 name: 'phone_number',
-                cursorColor: Colors.blue,
-                decoration: const InputDecoration(
+                cursorColor: theme.colorScheme.primary,
+                decoration: InputDecoration(
                     labelText: 'Phone Number',
-                    labelStyle: TextStyle(color: Colors.blue)),
+                    labelStyle: TextStyle(color: theme.colorScheme.primary)),
                 obscureText: false,
               ),
               const SizedBox(height: 16),
               FormBuilderTextField(
                 key: _passKey,
                 name: 'password',
-                cursorColor: Colors.blue,
-                decoration: const InputDecoration(
+                cursorColor: theme.colorScheme.primary,
+                decoration: InputDecoration(
                     labelText: 'Password',
-                    labelStyle: TextStyle(color: Colors.blue)),
+                    labelStyle: TextStyle(color: theme.colorScheme.primary)),
                 obscureText: true,
               ),
               const SizedBox(height: 32),
@@ -159,12 +161,13 @@ class LandingPage extends ConsumerWidget {
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          const RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.blue))),
+                          RoundedRectangleBorder(
+                              side: BorderSide(
+                                  color: theme.colorScheme.primary))),
                       backgroundColor:
                           const MaterialStatePropertyAll(Colors.white),
                       foregroundColor:
-                          const MaterialStatePropertyAll(Colors.blue),
+                          MaterialStatePropertyAll(theme.colorScheme.primary),
                       elevation: const MaterialStatePropertyAll(0),
                     ),
                     child: const Text("Register")),

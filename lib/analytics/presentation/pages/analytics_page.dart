@@ -12,6 +12,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
   final List<String> entries = <String>['A', 'B', 'C'];
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Column(
         children: [
@@ -19,7 +20,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
             Container(
               height: 173,
               width: double.infinity,
-              color: const Color.fromARGB(255, 0, 135, 249),
+              color: theme.colorScheme.primary,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 32),
@@ -79,13 +80,13 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                                     borderRadius: BorderRadius.circular(
                                         999.0), // Adjust the value for roundness
                                   ))),
-                              child: const Row(
+                              child: Row(
                                 children: [
                                   Icon(Icons.arrow_outward_rounded,
-                                      color: Colors.blue),
+                                      color: theme.colorScheme.primary),
                                   Text("Transfer",
                                       style: TextStyle(
-                                          color: Colors.blue,
+                                          color: theme.colorScheme.primary,
                                           letterSpacing: -1))
                                 ],
                               ),
@@ -110,7 +111,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                                 const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 0)),
                             backgroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             foregroundColor:
                                 MaterialStateProperty.all(Colors.white),
                             shape: MaterialStateProperty.all<
@@ -140,7 +141,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.transparent),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(999),
@@ -168,7 +169,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.transparent),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(999),
@@ -196,7 +197,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.transparent),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(999),
@@ -224,7 +225,7 @@ class _AnalyticsPage extends State<AnalyticsPage> {
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.transparent),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(999),

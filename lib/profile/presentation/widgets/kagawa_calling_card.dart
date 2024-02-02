@@ -7,6 +7,8 @@ class KagawaCallingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius:
@@ -162,7 +164,7 @@ class KagawaCallingCard extends StatelessWidget {
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromARGB(255, 226, 242, 255)),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.symmetric(vertical: 12)),
                             elevation: MaterialStateProperty.all(0),
@@ -204,7 +206,7 @@ class KagawaCallingCard extends StatelessWidget {
                             backgroundColor: MaterialStateProperty.all(
                                 const Color.fromARGB(255, 226, 242, 255)),
                             foregroundColor:
-                                MaterialStateProperty.all(Colors.blue),
+                                MaterialStateProperty.all(theme.colorScheme.primary),
                             padding: MaterialStateProperty.all(
                                 const EdgeInsets.symmetric(vertical: 12)),
                             elevation: MaterialStateProperty.all(0),
