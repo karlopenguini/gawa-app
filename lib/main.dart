@@ -14,10 +14,11 @@ void main() async {
 
   runApp(ProviderScope(
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             useMaterial3: false,
             textTheme: GoogleFonts.lexendTextTheme(),
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffff0000)), // 0xff0087f9 hex for Gawa blue
+            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff0cff10)), // 0xff0087f9 hex for Gawa blue
           ),
           home: const AuthenticatedWidget(
             child: SafeArea(child: MainLayout()),
