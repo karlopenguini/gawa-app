@@ -16,10 +16,13 @@ class KagawaProfilePage extends StatefulWidget {
   });
 
   @override
-  State<KagawaProfilePage> createState() => _KagawaProfilePageState();
+  State<KagawaProfilePage> createState() => _KagawaProfilePageState(id);
 }
 
 class _KagawaProfilePageState extends State<KagawaProfilePage> {
+  final int id;
+  _KagawaProfilePageState(this.id);
+
   final PageController _myPage = PageController(initialPage: 0);
   int _currentPageIndex = 0;
   bool _isUserDragging = false;
@@ -307,7 +310,9 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  KagawaCallingCard(),
+                  KagawaCallingCard(
+                    id: this.id,
+                  ),
                   Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(

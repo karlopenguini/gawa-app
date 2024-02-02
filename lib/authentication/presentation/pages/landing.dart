@@ -15,12 +15,11 @@ class LandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final Widget bigLogo = SvgPicture.asset(
-        'assets/Gawa_Logo_Small.svg',
+    final Widget bigLogo = SvgPicture.asset('assets/Gawa_Logo_Small.svg',
         semanticsLabel: 'Gawa Logo',
-        colorFilter: ColorFilter.mode(theme.colorScheme.primary, BlendMode.srcIn),
-        fit: BoxFit.contain
-    );
+        colorFilter:
+            ColorFilter.mode(theme.colorScheme.primary, BlendMode.srcIn),
+        fit: BoxFit.contain);
 
     Future<String?> showOtpInputDialog() async {
       TextEditingController otpController = TextEditingController();
@@ -163,7 +162,8 @@ class LandingPage extends ConsumerWidget {
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                              side: BorderSide(color: theme.colorScheme.primary))),
+                              side: BorderSide(
+                                  color: theme.colorScheme.primary))),
                       backgroundColor:
                           const MaterialStatePropertyAll(Colors.white),
                       foregroundColor:

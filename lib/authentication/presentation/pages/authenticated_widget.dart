@@ -14,7 +14,7 @@ class AuthenticatedWidget extends ConsumerWidget {
     var state = ref.watch(isAuthenticated);
     var notifier = ref.read(authenticationRepositoryProvider);
 
-    if (true) {
+    if (state) {
       return child;
     } else {
       return LandingPage();

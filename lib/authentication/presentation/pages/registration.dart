@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, use_build_context_synchronously
+import 'package:app/authentication/presentation/controller/authentication_controller.dart';
 import 'package:app/authentication/presentation/pages/success.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -70,12 +71,8 @@ class _StepRegistrationState extends ConsumerState<StepRegistration> {
 
   void _nextStep() async {
     if (!_complete) {
-      if (_currentStep + 1 < 4 && _validate()) {
-        if (_currentStep == 0) {
-          await _startPhoneAuthentication();
-        } else {
-          _goToStep(_currentStep + 1);
-        }
+      if (_currentStep + 1 <= 3 && _validate()) {
+        _goToStep(_currentStep + 1);
       }
       if (_currentStep + 1 == 4) {
         setState(() {
@@ -83,33 +80,11 @@ class _StepRegistrationState extends ConsumerState<StepRegistration> {
         });
       }
     } else {
-      final data = getAllFormValues();
-      await _firestore
-          .collection('user')
-          .doc(data['Step 0']['phone_number'])
-          .set({
-        'account_status': 'pending',
-        'address_barangay': data['Step 3']['barangay'],
-        'address_city': data['Step 3']['city'],
-        'address_province': data['Step 3']['province'],
-        'full_address': data['Step 3']['full_address'],
-        'first_name': data['Step 1']['first_name'],
-        'middle_name': data['Step 1']['middle_name'],
-        'last_name': data['Step 1']['last_name'],
-        'is_kagawa': false,
-        'date_of_birth': data['Step 2']['date_of_birth'],
-      });
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) => const SuccessPage(),
-        ),
-      );
+      await _startPhoneAuthentication();
     }
   }
 
   Future<void> _startPhoneAuthentication() async {
-    print("START");
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber:
           "+63" + _formKeys[0].currentState!.fields['phone_number']!.value!,
@@ -129,7 +104,8 @@ class _StepRegistrationState extends ConsumerState<StepRegistration> {
             );
 
             // Sign in or link with the credential
-            await FirebaseAuth.instance.signInWithCredential(credential);
+            final res =
+                await FirebaseAuth.instance.signInWithCredential(credential);
 
             // Show success Snackbar
             ScaffoldMessenger.of(context).showSnackBar(
@@ -138,9 +114,27 @@ class _StepRegistrationState extends ConsumerState<StepRegistration> {
                 duration: Duration(seconds: 2),
               ),
             );
-
-            // Continue to the next step
-            _goToStep(_currentStep + 1);
+            final data = getAllFormValues();
+            await _firestore.collection('user').doc(res.user!.uid).set({
+              'phone_number': res.user!.phoneNumber,
+              'account_status': 'pending',
+              'address_barangay': data['Step 3']['barangay'],
+              'address_city': data['Step 3']['city'],
+              'address_province': data['Step 3']['province'],
+              'full_address': data['Step 3']['full_address'],
+              'first_name': data['Step 1']['first_name'],
+              'middle_name': data['Step 1']['middle_name'],
+              'last_name': data['Step 1']['last_name'],
+              'is_kagawa': false,
+              'date_of_birth': data['Step 2']['date_of_birth'],
+            });
+            ref.read(isAuthenticated.notifier).state = true;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const SuccessPage(),
+              ),
+            );
           } on FirebaseAuthException catch (e) {
             // Handle Firebase authentication errors
             print("Firebase Authentication Error: ${e.message}");

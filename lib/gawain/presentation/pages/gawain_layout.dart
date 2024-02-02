@@ -18,12 +18,6 @@ class _GawainPageState extends State<GawainPage> {
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.chevron_left),
-          ),
           centerTitle: true,
           title: const Image(
             image: AssetImage('assets/gawa_text_white.png'),
@@ -31,7 +25,7 @@ class _GawainPageState extends State<GawainPage> {
           ),
           backgroundColor: theme.colorScheme.primary,
           bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(32),
+              preferredSize: const Size.fromHeight(40),
               child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
