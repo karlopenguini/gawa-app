@@ -1,8 +1,38 @@
+import 'dart:ffi';
+
 import 'package:app/search/data/search_list.dart';
+import 'package:app/search/presentation/widgets/kagawa_search_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
+
+  Future<Map<String, dynamic>> getKagawa() async {
+    final userQuery = FirebaseFirestore.instance
+        .collection('user')
+        .where('is_kagawa', isEqualTo: true)
+        .get();
+
+    final transactionsQuery = FirebaseFirestore.instance
+        .collection('gawa')
+        .where('status', isEqualTo: 'finished')
+        .get();
+
+    final reviewsQuery = FirebaseFirestore.instance.collection('review').get();
+
+    final List<QuerySnapshot> results =
+        await Future.wait([userQuery, transactionsQuery, reviewsQuery]);
+
+    final Map<String, dynamic> combinedResults = {
+      'userData': results[0],
+      'transactionsData': results[1],
+      'reviewsData': results[2]
+    };
+
+    return combinedResults;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +68,78 @@ class SearchPage extends StatelessWidget {
                         letterSpacing: 1.2)),
                 Text("Blk 3, Lot 21, Solen Residences",
                     style: TextStyle(
-                        fontSize: 12, color: theme.colorScheme.primary, letterSpacing: 0.8))
+                        fontSize: 12,
+                        color: theme.colorScheme.primary,
+                        letterSpacing: 0.8))
               ],
             )
           ],
         ),
-        const DropdownButtonExample(),
+        FutureBuilder<Object>(
+            future: getKagawa(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                final userData = snapshot.data!['userData']!.docs;
 
-        Expanded(
-          child: ListView(
-            padding: const EdgeInsets.all(20),
-            scrollDirection: Axis.vertical,
-              children: searchList,
-          ),
-        ),
+                QuerySnapshot transactionsData =
+                    snapshot.data!['transactionsData'];
+                QuerySnapshot reviewsData = snapshot.data!['reviewsData'];
+
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: userData.length,
+                    itemBuilder: (context, index) {
+                      Map<String, dynamic> userDataMap =
+                          userData[index].data() as Map<String, dynamic>;
+
+                      int transactions = transactionsData.docs
+                          .where((gawa) =>
+                              gawa['kagawa'] == userData.docs[index].reference)
+                          .length;
+                      int numReviews = reviewsData.docs
+                          .where((review) =>
+                              review['kagawa'] ==
+                              userData.docs[index].reference)
+                          .length;
+
+                      List<QueryDocumentSnapshot> userReviews = reviewsData.docs
+                          .where((gawa) =>
+                              gawa['kagawa'] == userData.docs[index].reference)
+                          .toList();
+                      double ratingAvg = userReviews.isEmpty
+                          ? 0.0
+                          : userReviews
+                                  .map<double>(
+                                      (review) => review['rating'].toDouble())
+                                  .fold(
+                                      0.0,
+                                      (previous, current) =>
+                                          previous + current) /
+                              userReviews.length;
+
+                      return SearchCard(
+                        id: userData[index].id,
+                        name: userDataMap['first_name'] +
+                            ' ' +
+                            userDataMap['middle_name'] +
+                            ' ' +
+                            userDataMap['last_name'],
+                        certs: [],
+                        rating: ratingAvg,
+                        numReviews: numReviews,
+                        transactions: transactions,
+                        image:
+                            'https://cdn.freebiesupply.com/logos/large/2x/pug-logo-png-transparent.png',
+                      );
+                    },
+                  ),
+                );
+              }
+            }),
       ]),
     ));
   }
