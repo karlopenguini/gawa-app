@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:app/profile/presentation/pages/kagawa_profile_page.dart';
 
-
 class SearchCard extends StatelessWidget {
-  final int id;
+  final id;
   final double rating;
+  final int numReviews;
   final String name;
   final String image;
   final int transactions;
@@ -17,7 +17,9 @@ class SearchCard extends StatelessWidget {
     required this.name,
     this.transactions = 0,
     this.certs = const [],
-    this.image = 'https://th.bing.com/th/id/OIP.ENu9hrlfzOB84klpy9Y20QHaHa?w=198&h=197&c=7&r=0&o=5&pid=1.7',
+    this.image =
+        'https://th.bing.com/th/id/OIP.ENu9hrlfzOB84klpy9Y20QHaHa?w=198&h=197&c=7&r=0&o=5&pid=1.7',
+    required this.numReviews,
   });
 
   @override
@@ -44,16 +46,21 @@ class SearchCard extends StatelessWidget {
                   CircleAvatar(
                     backgroundImage: NetworkImage(image),
                     radius: 40,
-                    backgroundColor: Colors.black54,
+                    backgroundColor: Colors.blue,
                   ),
                   const SizedBox(
-                    // height: 4,
+                    height: 4,
                   ),
-                  Text(name,
-                      style: const TextStyle(
-                          letterSpacing: -1,
-                          fontSize: 14,
-                          color: Colors.black54))
+                  SizedBox(
+                    width: 64,
+                    child: Text(name,
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            letterSpacing: -1,
+                            fontSize: 14,
+                            color: Colors.black54)),
+                  )
                 ],
               ),
               const SizedBox(
@@ -79,7 +86,8 @@ class SearchCard extends StatelessWidget {
                     const SizedBox(
                       width: 4,
                     ),
-                    Text("(12 reviews)",
+                    Text(
+                      '($numReviews reviews)',
                       style: TextStyle(
                           letterSpacing: -1,
                           fontSize: 12,
@@ -106,23 +114,31 @@ class SearchCard extends StatelessWidget {
                     height: 8,
                   ),
                   for (var cert in certs)
-                    Row(children: [
-                      const Icon(Icons.assignment_outlined,
-                          size: 14, color: Colors.black54),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(cert,
-                          style: const TextStyle(
-                            letterSpacing: -1,
-                            color: Colors.black54,
-                            fontSize: 12,
-                          )),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      const Icon(Icons.copy, size: 12, color: Colors.black54)
-                    ]),
+                    Column(
+                      children: [
+                        Row(children: [
+                          const Icon(Icons.assignment_outlined,
+                              size: 14, color: Colors.black54),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          Text(cert,
+                              style: const TextStyle(
+                                letterSpacing: -1,
+                                color: Colors.black54,
+                                fontSize: 12,
+                              )),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          const Icon(Icons.copy,
+                              size: 12, color: Colors.black54)
+                        ]),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                      ],
+                    ),
                   const SizedBox(
                     height: 8,
                   ),

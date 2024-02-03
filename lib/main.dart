@@ -18,7 +18,6 @@ void main() async {
           theme: ThemeData(
             useMaterial3: false,
             textTheme: GoogleFonts.lexendTextTheme(),
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff0cff10)), // 0xff0087f9 hex for Gawa blue
           ),
           home: const AuthenticatedWidget(
             child: SafeArea(child: MainLayout()),

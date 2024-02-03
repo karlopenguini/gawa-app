@@ -60,26 +60,30 @@ class LandingPage extends ConsumerWidget {
                 key: _phoneKey,
                 name: 'phone_number',
                 cursorColor: theme.colorScheme.primary,
+                keyboardType: TextInputType.number,
+                style: TextStyle(fontSize: 24),
+                textAlign: TextAlign.center,
+                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
                     labelText: 'Phone Number',
                     labelStyle: TextStyle(color: theme.colorScheme.primary)),
                 obscureText: false,
               ),
               const SizedBox(height: 16),
-              FormBuilderTextField(
-                key: _passKey,
-                name: 'password',
-                cursorColor: theme.colorScheme.primary,
-                decoration: InputDecoration(
-                    labelText: 'Password',
-                    labelStyle: TextStyle(color: theme.colorScheme.primary)),
-                obscureText: true,
-              ),
+              // FormBuilderTextField(
+              //   key: _passKey,
+              //   name: 'password',
+              //   cursorColor: theme.colorScheme.primary,
+              //   decoration: InputDecoration(
+              //       labelText: 'Password',
+              //       labelStyle: TextStyle(color: theme.colorScheme.primary)),
+              //   obscureText: true,
+              // ),
               const SizedBox(height: 32),
-              TextButton(
-                child: const Text("Forgot your password?"),
-                onPressed: () {},
-              ),
+              // TextButton(
+              //   child: const Text("Forgot your password?"),
+              //   onPressed: () {},
+              // ),
               const Spacer(),
               SizedBox(
                 width: double.infinity,
