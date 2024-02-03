@@ -40,7 +40,7 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Scaffold(
         appBar: AppBar(
           bottom: PreferredSize(
@@ -777,15 +777,16 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
                                         elevation: MaterialStateProperty.all(0),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
+                                        shape:
+                                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(999),
                                         ))),
                                     onPressed: () {},
                                     child: const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.book,
@@ -816,15 +817,16 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
                                         elevation: MaterialStateProperty.all(0),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
+                                        shape:
+                                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(999),
                                         ))),
                                     onPressed: () {},
                                     child: const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.chat_bubble,
@@ -1107,15 +1109,16 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
                                         elevation: MaterialStateProperty.all(0),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
+                                        shape:
+                                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(999),
                                         ))),
                                     onPressed: () {},
                                     child: const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.book,
@@ -1146,15 +1149,16 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                             const EdgeInsets.symmetric(
                                                 vertical: 12)),
                                         elevation: MaterialStateProperty.all(0),
-                                        shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(
-                                            RoundedRectangleBorder(
+                                        shape:
+                                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(999),
                                         ))),
                                     onPressed: () {},
                                     child: const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Icon(
                                             Icons.chat_bubble,
@@ -1340,10 +1344,9 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                   child: ElevatedButton(
                                       style: ButtonStyle(
                                           alignment: Alignment.center,
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  const Color.fromARGB(
-                                                      255, 226, 242, 255)),
+                                          backgroundColor: MaterialStateProperty.all(
+                                              const Color.fromARGB(
+                                                  255, 226, 242, 255)),
                                           foregroundColor:
                                               MaterialStateProperty.all(
                                                   theme.colorScheme.primary),
@@ -1380,10 +1383,9 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                   child: ElevatedButton(
                                       style: ButtonStyle(
                                           alignment: Alignment.center,
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  const Color.fromARGB(
-                                                      255, 226, 242, 255)),
+                                          backgroundColor: MaterialStateProperty.all(
+                                              const Color.fromARGB(
+                                                  255, 226, 242, 255)),
                                           foregroundColor:
                                               MaterialStateProperty.all(
                                                   theme.colorScheme.primary),
