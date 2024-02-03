@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:app/profile/presentation/pages/kagawa_experience_edit.dart';
 import 'package:app/profile/presentation/widgets/kagawa_calling_card.dart';
+import 'package:app/profile/presentation/pages/kagawa_profile_edit.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter/rendering.dart';
@@ -275,10 +277,13 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
           ),
           actions: [
             IconButton(
-              icon: const Icon(Icons.chat_bubble_outline, size: 18),
+              icon: const Icon(Icons.edit, size: 20),
               tooltip: 'Open chat of this kagawa',
               onPressed: () {
-                // handle the press
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const KagawaProfileEdit()),
+                );
               },
             ),
           ],
@@ -314,14 +319,29 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                           horizontal: 13, vertical: 24),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 13),
                       color: Colors.white,
-                      child: const Column(
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Experience",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  letterSpacing: -1.0)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Experience",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      letterSpacing: -1.0)),
+                              IconButton(
+                                  icon: Icon(Icons.edit),
+                                  color: theme.colorScheme.outline,
+                                  onPressed: () {
+                                    Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const KagawaExperienceEdit()),
+                                  );
+                                },
+                              )
+                            ],
+                          ),
                           SizedBox(height: 13),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

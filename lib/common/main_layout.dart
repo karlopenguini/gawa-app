@@ -5,7 +5,7 @@ import 'package:app/authentication/presentation/controller/authentication_contro
 import 'package:app/authentication/presentation/pages/authenticated_widget.dart';
 import 'package:app/authentication/presentation/pages/landing.dart';
 import 'package:app/gawain/presentation/pages/gawain_layout.dart';
-import 'package:app/home/presentation/pages/home_page.dart';
+import 'package:app/home/presentation/pages/kagawa_home_page.dart';
 import 'package:app/search/presentation/pages/search_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
