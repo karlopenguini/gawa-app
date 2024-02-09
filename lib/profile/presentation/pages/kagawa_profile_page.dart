@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:app/users/domain/kagawa.dart';
 import 'package:app/profile/presentation/pages/kagawa_experience_edit.dart';
 import 'package:app/profile/presentation/widgets/kagawa_calling_card.dart';
 import 'package:app/profile/presentation/pages/kagawa_profile_edit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:flutter/rendering.dart';
@@ -22,7 +25,6 @@ class KagawaProfilePage extends StatefulWidget {
 class _KagawaProfilePageState extends State<KagawaProfilePage> {
   final int id;
   _KagawaProfilePageState(this.id);
-
   final PageController _myPage = PageController(initialPage: 0);
   int _currentPageIndex = 0;
   bool _isUserDragging = false;
@@ -37,6 +39,14 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
         _isUserDragging = false;
       }
     });
+  }
+
+  Stream<DocumentSnapshot> getPendingRequests() {
+    // Replace 'your_collection' with your actual collection name
+    return FirebaseFirestore.instance
+        .collection('user')
+        .doc('207PnD6ZjPPwGHJwSA5NoiNhJGv2') // replace this with user id
+        .snapshots();
   }
 
   @override
@@ -245,36 +255,50 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
             icon: const Icon(Icons.chevron_left),
           ),
           backgroundColor: Colors.transparent,
-          title: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("John Dela Cruz",
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -1.5,
-                  )),
-              Row(
-                children: [
-                  Text("Plumbing",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                          letterSpacing: -1)),
-                  Icon(
-                    Icons.circle,
-                    color: Colors.black54,
-                    size: 4,
-                  ),
-                  Text("Pipe Fitting",
-                      style: TextStyle(
-                          color: Colors.black54,
-                          fontSize: 14,
-                          letterSpacing: -1))
-                ],
-              )
-            ],
-          ),
+          title: StreamBuilder<DocumentSnapshot>(
+              stream: getPendingRequests(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else {
+                  DocumentSnapshot user = snapshot.data!;
+                  debugPrint(user.data().toString());
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(user['first_name'] + " " + user['last_name'],
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: -1.5,
+                          )),
+                      Row(
+                        children: [
+                          Text("Plumbing",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  letterSpacing: -1)),
+                          Icon(
+                            Icons.circle,
+                            color: Colors.black54,
+                            size: 4,
+                          ),
+                          Text("Pipe Fitting",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 14,
+                                  letterSpacing: -1))
+                        ],
+                      )
+                    ],
+                  );
+                }
+              }),
           actions: [
             IconButton(
               icon: const Icon(Icons.edit, size: 20),
@@ -282,7 +306,8 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const KagawaProfileEdit()),
+                  MaterialPageRoute(
+                      builder: (context) => const KagawaProfileEdit()),
                 );
               },
             ),
@@ -303,16 +328,91 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                   _currentPageIndex = _currentPageIndex - 1;
                 });
               }
-              print(_currentPageIndex);
+              debugPrint("Kagawa profile_Current Page: $_currentPageIndex");
             }
           },
           children: [
-            SingleChildScrollView(
+        StreamBuilder<DocumentSnapshot>(
+        stream: getPendingRequests(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            DocumentSnapshot user = snapshot.data!;
+            debugPrint(user.data().toString());
+
+            return SingleChildScrollView(
               child: Column(
                 children: [
                   KagawaCallingCard(
                     id: this.id,
                   ),
+                  Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 13, vertical: 24),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 0, 13),
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Your Info",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      letterSpacing: -1.0)),
+                            ],
+                          ),
+                          SizedBox(height: 13),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Address",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: -1.0)),
+                                  Text(user['full_address'] + " " + user['address_city'] + " " + user['address_province'],
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                          letterSpacing: -1.0)),
+                                ],
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 9),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Phone Number",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: -1.0)),
+                                  Text(user['phone_number'],
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                          letterSpacing: -1.0)),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      )),
                   Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(
@@ -331,12 +431,14 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                                       color: Colors.black,
                                       letterSpacing: -1.0)),
                               IconButton(
-                                  icon: Icon(Icons.edit),
-                                  color: theme.colorScheme.outline,
-                                  onPressed: () {
-                                    Navigator.push(
+                                icon: Icon(Icons.edit),
+                                color: theme.colorScheme.outline,
+                                onPressed: () {
+                                  Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const KagawaExperienceEdit()),
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const KagawaExperienceEdit()),
                                   );
                                 },
                               )
@@ -476,7 +578,9 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
                       ))
                 ],
               ),
-            ),
+            );
+          }
+        }),
             Padding(
               padding: const EdgeInsets.only(top: 13),
               child: SfCalendar(
@@ -1470,5 +1574,19 @@ class _KagawaProfilePageState extends State<KagawaProfilePage> {
             ),
           ],
         ));
+
+    return StreamBuilder<DocumentSnapshot>(
+        stream: getPendingRequests(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          } else {
+            DocumentSnapshot user = snapshot.data!;
+            debugPrint(user.data().toString());
+          }
+        });
   }
 }
