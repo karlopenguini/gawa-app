@@ -5,6 +5,7 @@ import 'package:app/authentication/presentation/controller/authentication_contro
 import 'package:app/authentication/presentation/pages/authenticated_widget.dart';
 import 'package:app/authentication/presentation/pages/landing.dart';
 import 'package:app/gawain/presentation/pages/gawain_layout.dart';
+import 'package:app/home/presentation/pages/home_page.dart';
 import 'package:app/home/presentation/pages/kagawa_home_page.dart';
 import 'package:app/search/presentation/pages/search_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,7 @@ class _MainLayoutState extends ConsumerState<MainLayout> {
   var pages = [
     const HomePage(),
     const GawainPage(),
-    const HomePage(),
+    const KagawaHomePage(),
     const SearchPage(),
   ];
   final PageController _myPage = PageController(initialPage: 0);
@@ -48,8 +49,9 @@ class _MainLayoutState extends ConsumerState<MainLayout> {
         body: PageView(
           controller: _myPage,
           children: <Widget>[
-            const HomePage(),
+            const KagawaHomePage(),
             const GawainPage(),
+            const HomePage(),
             const AnalyticsPage(),
             Scaffold(
                 body: Container(

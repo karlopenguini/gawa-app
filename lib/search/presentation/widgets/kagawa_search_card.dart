@@ -37,7 +37,7 @@ class SearchCard extends StatelessWidget {
         },
         child: Card(
           elevation: 0,
-          color: theme.colorScheme.background,
+          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(children: [

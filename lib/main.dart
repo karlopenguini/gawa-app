@@ -16,9 +16,9 @@ void main() async {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            useMaterial3: false,
-            textTheme: GoogleFonts.lexendTextTheme(),
-          ),
+              useMaterial3: false,
+              textTheme: GoogleFonts.lexendTextTheme(),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
           home: const AuthenticatedWidget(
             child: SafeArea(child: MainLayout()),
           ))));

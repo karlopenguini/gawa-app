@@ -3,8 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/home/presentation/widgets/gawain_card.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class KagawaHomePage extends StatelessWidget {
+  const KagawaHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +12,32 @@ class HomePage extends StatelessWidget {
 
     // something to fetch the first 5 recent workers or something.
     var favorites = <GawainCard>[
-      GawainCard(id: 0, suki: true, title: 'Bidet problem', name: 'Karlo', location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna', time: DateTime.now(),
-        image: 'https://cdn3.emoji.gg/emojis/8410-joshhutchersonwhistle.png',),
-      GawainCard(id: 1, suki: true, title: 'Bidet problem', name: 'Karlo', location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna', time: DateTime.now(),
-        image: 'https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/t4x5rwsxoi2skbz2z95c',),
-      GawainCard(id: 2, title: 'Bidet problem', name: 'Karlo', location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna', time: DateTime.now(),),
-
+      GawainCard(
+        id: 0,
+        suki: true,
+        title: 'Bidet problem',
+        name: 'Karlo',
+        location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna',
+        time: DateTime.now(),
+        image: 'https://cdn3.emoji.gg/emojis/8410-joshhutchersonwhistle.png',
+      ),
+      GawainCard(
+        id: 1,
+        suki: true,
+        title: 'Bidet problem',
+        name: 'Karlo',
+        location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna',
+        time: DateTime.now(),
+        image:
+            'https://images.crunchbase.com/image/upload/c_pad,h_256,w_256,f_auto,q_auto:eco,dpr_1/t4x5rwsxoi2skbz2z95c',
+      ),
+      GawainCard(
+        id: 2,
+        title: 'Bidet problem',
+        name: 'Karlo',
+        location: 'B3, L21, P1, Solen Residences, Don Jose, Sta Rosa, Laguna',
+        time: DateTime.now(),
+      ),
     ];
 
     return DefaultTabController(
@@ -51,11 +71,12 @@ class HomePage extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 10),
                         scrollDirection: Axis.horizontal,
                         child: Row(children: [
-                          for (var fav in favorites)
-                            fav,
+                          for (var fav in favorites) fav,
                         ]),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text(
                         "Pending Requests",
                         style: TextStyle(
@@ -63,9 +84,13 @@ class HomePage extends StatelessWidget {
                             fontSize: 20,
                             letterSpacing: -1.5),
                       ),
-                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 10,
+                      ),
                       AlertCard(theme: theme),
-                      SizedBox(height: 30,),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Text(
                         "Pending Requests",
                         style: TextStyle(
@@ -73,8 +98,13 @@ class HomePage extends StatelessWidget {
                             fontSize: 20,
                             letterSpacing: -1.5),
                       ),
-                      SizedBox(height: 10,),
-                      AlertCard(theme: theme, tertiary: true,),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      AlertCard(
+                        theme: theme,
+                        tertiary: true,
+                      ),
                     ],
                   ),
                 )
@@ -89,7 +119,7 @@ class AlertCard extends StatelessWidget {
   const AlertCard({
     super.key,
     required this.theme,
-    this.tertiary =false,
+    this.tertiary = false,
   });
 
   final ThemeData theme;
@@ -100,45 +130,42 @@ class AlertCard extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Card(
-        color: tertiary ? theme.colorScheme.tertiary : theme.colorScheme.primary,
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Padding(
-                padding: EdgeInsets.fromLTRB(12, 10, 12, 10),
-                child: Icon(Icons.assignment_late,
-                color: theme.colorScheme.onPrimary,
-                size: 55),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'You have 2 unread messages',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: theme.colorScheme.onPrimary
-                      ),
-                    ),
-                    Text(
-                      'Message them ASAP to follow up with their concern',
-                      style: TextStyle(
-                        color: theme.colorScheme.onInverseSurface,
-                        fontWeight: FontWeight.w100,
-                        fontSize: 12
-                      ),
-                    ),
-                  ],
+          color:
+              tertiary ? theme.colorScheme.tertiary : theme.colorScheme.primary,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Padding(
+                  padding: EdgeInsets.fromLTRB(12, 10, 12, 10),
+                  child: Icon(Icons.assignment_late,
+                      color: theme.colorScheme.onPrimary, size: 55),
                 ),
-              )
-            ],
-          ),
-        )
-      ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'You have 2 unread messages',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: theme.colorScheme.onPrimary),
+                      ),
+                      Text(
+                        'Message them ASAP to follow up with their concern',
+                        style: TextStyle(
+                            color: theme.colorScheme.onInverseSurface,
+                            fontWeight: FontWeight.w100,
+                            fontSize: 12),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )),
     );
   }
 }
@@ -242,29 +269,31 @@ class HomeBar extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("kamusta, ",
-                    style: TextStyle(
-                      color: theme.colorScheme.onPrimary,
-                      fontSize: 27,
-                      shadows: [
-                          Shadow(
-                            offset: Offset(4, 4),
-                            color: theme.colorScheme.tertiary,
-                          )
-                        ]
-                    ),),
-                    Text("John!",
-                    style: TextStyle(
-                      color: theme.colorScheme.onPrimary,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 27,
-                      shadows: [
-                        Shadow(
-                          offset: Offset(4, 4),
-                          color: theme.colorScheme.tertiary,
-                        )
-                      ]
-                    ),) //(FirebaseAuth.instance.currentUser!).displayName!
+                    Text(
+                      "kamusta, ",
+                      style: TextStyle(
+                          color: theme.colorScheme.onPrimary,
+                          fontSize: 27,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(4, 4),
+                              color: theme.colorScheme.tertiary,
+                            )
+                          ]),
+                    ),
+                    Text(
+                      "John!",
+                      style: TextStyle(
+                          color: theme.colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 27,
+                          shadows: [
+                            Shadow(
+                              offset: Offset(4, 4),
+                              color: theme.colorScheme.tertiary,
+                            )
+                          ]),
+                    ) //(FirebaseAuth.instance.currentUser!).displayName!
                   ],
                 )),
           ],
